@@ -60,27 +60,6 @@ This diagram shows the relationship between the Listing and Date entities in the
 
 
 
-
-   +-------------------+                           +------------------+
-   |    Listing        |                           |     Date         |
-   |-------------------|                           |------------------|
-   | listing_id        |                           | date             |
-   | minimum_nights    |                           +------------------+
-   | maximum_nights    |
-   +-------------------+
-         |    
-         |    
-         | HAS_PRICE_ON {price, adjusted_price, available}
-         |
-         V
-   +-------------------+
-   |       Date        |
-   |-------------------|
-   |       date        |
-   +-------------------+
-
-
-
 ## 查询语句：
 下面这些查询涵盖了基本的数据验证、趋势分析和高级图分析。我们还可以写更多更复杂的。
 
