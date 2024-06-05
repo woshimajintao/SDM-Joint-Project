@@ -1,6 +1,6 @@
 # SDM-Joint-Project
 SDM Part of Joint Project
-这里我只分析了calendar的csv，建立了很简单的属性图，我觉得其他巴塞罗那Airbnb的csv也可以一块分析或者建立更复杂的属性图
+这里我只分析了calendar的csv，因为数据量太大，所以我只抽取了前3000行，然后建立了很简单的属性图，我觉得其他巴塞罗那Airbnb的csv也可以一块分析或者建立更复杂的属性图
 
 ## 属性图设计
 
