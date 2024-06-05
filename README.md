@@ -2,6 +2,13 @@
 SDM Part of Joint Project
 这里我只分析了calendar的csv，因为数据量太大，所以我只抽取了前3000行，然后建立了很简单的属性图，我觉得其他巴塞罗那Airbnb的csv也可以一块分析或者建立更复杂的属性图
 
+## 使用head命令选择前3000行数据：
+
+在命令行中使用以下命令选择前3000行数据，并将其保存到一个新的CSV文件中。
+
+head -n 3000 "/System/Volumes/Data/Users/jintaoma/Desktop/UPC/BDM/project/calendar.csv" > "/System/Volumes/Data/Users/jintaoma/Desktop/UPC/BDM/project/calendar_first_3000.csv"
+请确保路径正确，使用你原始CSV文件的完整路径和目标路径。
+
 ## 属性图设计
 
 ### 节点：
