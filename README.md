@@ -1,7 +1,7 @@
 # SDM-Joint-Project
 SDM Part of Joint Project
 
-##属性图设计
+##属性图设计##
 
 节点：
 房源（Listing）：表示一个Airbnb房源。
