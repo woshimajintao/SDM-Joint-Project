@@ -34,6 +34,32 @@ HAS_PRICE_ON：连接一个房源到一个日期，表示该日期的价格和�
 日期（Date）节点：用一个圆圈表示，包含 date 属性。
 HAS_PRICE_ON关系：用一个箭头表示，连接 Listing 节点和 Date 节点，箭头上标注 price、adjusted_price 和 available 属性。
 
+# Relationship Diagram
+
+This diagram shows the relationship between the Listing and Date entities in the database.
+
+```markdown
++-------------------+                           +------------------+
+|    Listing        |                           |     Date         |
+|-------------------|                           |------------------|
+| listing_id        |                           | date             |
+| minimum_nights    |                           +------------------+
+| maximum_nights    |
++-------------------+
+      |    
+      |    
+      | HAS_PRICE_ON {price, adjusted_price, available}
+      |
+      V
++-------------------+
+|       Date        |
+|-------------------|
+|       date        |
++-------------------+
+
+
+
+
 
    +-------------------+                           +------------------+
    |    Listing        |                           |     Date         |
