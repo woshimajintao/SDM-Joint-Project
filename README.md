@@ -39,11 +39,11 @@ HAS_PRICE_ON关系：用一个箭头表示，连接 Listing 节点和 Date 节�
 This diagram shows the relationship between the Listing and Date entities in the database.
 
 ```markdown
-+-------------------+                           +------------------+
-|    Listing        |                           |     Date         |
-|-------------------|                           |------------------|
-| listing_id        |                           | date             |
-| minimum_nights    |                           +------------------+
++-------------------+                         
+|    Listing        |                          
+|-------------------|                           
+| listing_id        |                           
+| minimum_nights    |                           
 | maximum_nights    |
 +-------------------+
       |    
