@@ -4,10 +4,9 @@ SDM Part of Joint Project
 
 ## 使用head命令选择前3000行数据：
 
-在命令行中使用以下命令选择前3000行数据，并将其保存到一个新的CSV文件中。
-
+在Mac的命令行中使用以下命令选择前3000行数据，并将其保存到一个新的CSV文件中。
+```sh
 head -n 3000 "/System/Volumes/Data/Users/jintaoma/Desktop/UPC/BDM/project/calendar.csv" > "/System/Volumes/Data/Users/jintaoma/Desktop/UPC/BDM/project/calendar_first_3000.csv"
-请确保路径正确，使用你原始CSV文件的完整路径和目标路径。
 
 ## 属性图设计
 
