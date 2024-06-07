@@ -111,7 +111,7 @@ amenity_name: STRING
 ### 关系
 1.HAS_HOST:  Host-> Listing
 
-房东拥有一个房源。
+房东拥有一个房源。（这个关系名字也可以改为OWN等表示拥有）
 
 2.HAS_CALENDAR: Listing -> Calendar
 
