@@ -11,6 +11,9 @@ Python的Pandas进行选择calendar的前20000行数据和listings合并，共�
 进行数据清洗与处理,涉及到处理一些特定的列，代码在这里:
 https://colab.research.google.com/drive/1FENHdgKKFWHP-ivmFYpZIaiQI68OBrXX?usp=sharing
 
+新的数据集在这里：
+https://drive.google.com/file/d/1-A0-D0aZmVnyupvOqK-yi5A2L1LAlVmS/view?usp=share_link
+
 然后用python脚本将csv导入到neo4j，这中间需要定义节点，属性，关系：
 
 最后导入进去的总行数Total rows processed: 713835
