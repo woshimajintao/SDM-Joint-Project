@@ -3,9 +3,9 @@ SDM Part of Joint Project
 更新一下：
 这里我分析了calendar和listings的csv，因为数据量太大，所以我只抽取了前20000行，然后建立了属性图
 
-## 使用head命令选择前3000行数据：
+## 使用head命令选择前20000行数据：
 
-Python的Pandas进行处理选择calendar的前10000行数据和listings合并，并将其保存到一个新的CSV文件中。
+Python的Pandas进行处理选择calendar的前20000行数据和listings合并，并将其保存到一个新的CSV文件中。
 
 进行数据清洗与处理
 
