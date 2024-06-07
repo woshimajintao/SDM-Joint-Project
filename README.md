@@ -109,9 +109,9 @@ longitude: FLOAT
 amenity_name: STRING
 
 ### 关系
-1.HAS_HOST: Listing -> Host
+1.HAS_HOST:  Host-> Listing
 
-一个房源由一个房东拥有。
+房东拥有一个房源。
 
 2.HAS_CALENDAR: Listing -> Calendar
 
