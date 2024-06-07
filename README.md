@@ -9,7 +9,8 @@ Python的Pandas进行处理选择calendar的前10000行数据和listings合并�
 
 进行数据清洗与处理
 
-
+然后将csv导入到neo4j，这中间需要定义节点，属性，关系：
+Total rows processed: 713835
 ## 属性图设计
 
 
