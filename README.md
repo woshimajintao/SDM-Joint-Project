@@ -1,7 +1,8 @@
 # SDM-Joint-Project
 SDM Part of Joint Project
+
 更新一下：
-这里我分析了calendar和listings的csv，因为数据量太大，所以我只抽取了前20000行，然后建立了属性图
+这里我重新分析了calendar和listings的csv，因为数据量太大，所以我只抽取了前20000行，然后建立了属性图
 
 ## 数据预处理：
 
