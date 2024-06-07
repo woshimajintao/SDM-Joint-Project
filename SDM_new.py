@@ -77,7 +77,7 @@ ON CREATE SET
     h.host_verifications = row.host_verifications,
     h.host_has_profile_pic = row.host_has_profile_pic,
     h.host_identity_verified = row.host_identity_verified
-MERGE (l)-[:HAS_HOST]->(h)
+MERGE (h)-[:HAS_HOST]->(l)
 MERGE (h)-[:LOCATED_IN]->(loc)
 
 // Create Calendar node and establish relationships
