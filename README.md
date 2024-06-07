@@ -3,14 +3,16 @@ SDM Part of Joint Project
 更新一下：
 这里我分析了calendar和listings的csv，因为数据量太大，所以我只抽取了前20000行，然后建立了属性图
 
-## 使用head命令选择前20000行数据：
+## 数据预处理：
 
-Python的Pandas进行处理选择calendar的前20000行数据和listings合并，并将其保存到一个新的CSV文件中。
+Python的Pandas进行选择calendar的前20000行数据和listings合并，共同属性列是id，并将其保存到一个新的CSV文件中。
 
-进行数据清洗与处理
+进行数据清洗与处理,涉及到处理一些特定的列，代码在这里:
+https://colab.research.google.com/drive/1FENHdgKKFWHP-ivmFYpZIaiQI68OBrXX?usp=sharing
 
-然后将csv导入到neo4j，这中间需要定义节点，属性，关系：
-Total rows processed: 713835
+然后用python脚本将csv导入到neo4j，这中间需要定义节点，属性，关系：
+总行数Total rows processed: 713835
+
 ## 属性图设计
 
 
@@ -129,7 +131,8 @@ amenity_name: STRING
 
 
 ## 查询语句：
-下面这些查询涵盖了基本的数据验证、趋势分析和高级图分析。我们还可以写更多更复杂的。
+下面这些查询涵盖了基本的数据验证、趋势分析和高级图分析。我们还可以写更多更复杂的。这些都能查到结果。
+
 
 ### 基本数据验证
 查询所有房源及其房东：
@@ -269,6 +272,9 @@ LIMIT 20
 MATCH (h:Host)-[:LOCATED_IN]->(loc:Location), (h)<-[:HAS_HOST]-(l:Listing)
 RETURN h, loc, l
 LIMIT 20
+![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/9a3740c3-98fe-41f8-85c2-13c84dee6c1c)
+![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/13d5f01d-d20f-4f4d-8a25-8be431f1a0ce)
+
 ###数据验证
 验证是否所有房源都有房东：
 
@@ -324,6 +330,7 @@ LIMIT 20
 MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location), (l)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
 RETURN l, loc, r
 LIMIT 20
+
 
 
 
