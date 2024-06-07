@@ -277,7 +277,7 @@ LIMIT 20
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/9a3740c3-98fe-41f8-85c2-13c84dee6c1c)
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/13d5f01d-d20f-4f4d-8a25-8be431f1a0ce)
 
-###数据验证
+### 数据验证
 验证是否所有房源都有房东：
 
 
