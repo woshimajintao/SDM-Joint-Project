@@ -21,7 +21,7 @@ https://drive.google.com/file/d/1-A0-D0aZmVnyupvOqK-yi5A2L1LAlVmS/view?usp=share
 ## 属性图设计
 
 
-### 节点类型
+### 节点和属性:
 
 下面是节点类型及其属性：
 
@@ -136,7 +136,7 @@ amenity_name: STRING
 
 
 ## 关系图（需要用visio重新画一下）
-![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/fe5acf3f-1d49-444a-8900-f10c58028c24)
+![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/245ddabb-0dd5-42f2-9984-b345fcb0c348)
 
 
 
