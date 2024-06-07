@@ -145,12 +145,11 @@ amenity_name: STRING
 
 
 ### 基本数据验证
-查询所有房源及其房东：
+查询所有房东的房源：
 
 
-MATCH (l:Listing)-[:HAS_HOST]->(h:Host)
-RETURN l, h
-LIMIT 20
+MATCH (h:Host)-[:HAS_HOST]->(l:Listing) RETURN l, h LIMIT 20
+
 
 查询所有房源及其日历记录：
 
@@ -190,10 +189,8 @@ LIMIT 20
 按房东查询房源数量：
 
 
-MATCH (h:Host)<-[:HAS_HOST]-(l:Listing)
-RETURN h.host_name, COUNT(l) AS listing_count
-ORDER BY listing_count DESC
-LIMIT 20
+MATCH (h:Host)-[:HAS_HOST]->(l:Listing) RETURN h.host_name, COUNT(l) AS listing_count ORDER BY listing_count DESC LIMIT 20
+
 
 按位置查询房源数量：
 
@@ -215,10 +212,8 @@ LIMIT 20
 
 
 
-MATCH (h:Host)<-[:HAS_HOST]-(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-RETURN h.host_name, AVG(r.review_scores_rating) AS avg_rating
-ORDER BY avg_rating DESC
-LIMIT 20
+MATCH (h:Host)-[:HAS_HOST]->(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore) RETURN h.host_name, AVG(r.review_scores_rating) AS avg_rating ORDER BY avg_rating DESC LIMIT 20
+
 
 按位置查询平均评分：
 
@@ -279,9 +274,8 @@ LIMIT 20
 可视化所有房东及其房源和位置：
 
 
-MATCH (h:Host)-[:LOCATED_IN]->(loc:Location), (h)<-[:HAS_HOST]-(l:Listing)
-RETURN h, loc, l
-LIMIT 20
+MATCH (h:Host)-[:LOCATED_IN]->(loc:Location), (h)-[:HAS_HOST]->(l:Listing) RETURN h, loc, l LIMIT 20
+
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/9a3740c3-98fe-41f8-85c2-13c84dee6c1c)
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/13d5f01d-d20f-4f4d-8a25-8be431f1a0ce)
 
@@ -289,10 +283,8 @@ LIMIT 20
 验证是否所有房源都有房东：
 
 
-MATCH (l:Listing)
-WHERE NOT (l)-[:HAS_HOST]->()
-RETURN l
-LIMIT 20
+MATCH (l:Listing) WHERE NOT (l)<-[:HAS_HOST]-() RETURN l LIMIT 20
+
 
 验证是否所有房源都有评分：
 
@@ -321,10 +313,8 @@ LIMIT 20
 进一步分析查询所有房东及其所有房源的平均评分：
 
 
-MATCH (h:Host)<-[:HAS_HOST]-(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-RETURN h.host_name, AVG(r.review_scores_rating) AS avg_rating, COUNT(l) AS listing_count
-ORDER BY avg_rating DESC
-LIMIT 20
+MATCH (h:Host)-[:HAS_HOST]->(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore) RETURN h.host_name, AVG(r.review_scores_rating) AS avg_rating, COUNT(l) AS listing_count ORDER BY avg_rating DESC LIMIT 20
+
 
 查询所有房东的响应率和接受率：
 
