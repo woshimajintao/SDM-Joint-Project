@@ -12,7 +12,8 @@ Python的Pandas进行选择calendar的前20000行数据和listings合并，共�
 https://colab.research.google.com/drive/1FENHdgKKFWHP-ivmFYpZIaiQI68OBrXX?usp=sharing
 
 然后用python脚本将csv导入到neo4j，这中间需要定义节点，属性，关系：
-总行数Total rows processed: 713835
+
+最后导入进去的总行数Total rows processed: 713835
 
 ## 属性图设计
 
