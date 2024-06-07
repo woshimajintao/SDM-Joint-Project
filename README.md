@@ -135,7 +135,7 @@ amenity_name: STRING
 
 
 
-## 关系图（需要用visio重新画一下）
+## 关系图（需要用visio或者draw.io重新画一下,并且标清楚属性）
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/245ddabb-0dd5-42f2-9984-b345fcb0c348)
 
 
