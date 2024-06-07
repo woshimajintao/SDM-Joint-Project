@@ -127,7 +127,7 @@ amenity_name: STRING
 
 5.LOCATED_IN: Host -> Location
 
-一个房东位于一个地理位置。
+一个房东位于一个地理位置。（这里也可以改为LIVE_IN）
 
 6.HAS_AMENITY: Listing -> Amenity
 
