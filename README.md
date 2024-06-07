@@ -109,18 +109,23 @@ amenity_name: STRING
 1.HAS_HOST: Listing -> Host
 
 一个房源由一个房东拥有。
+
 2.HAS_CALENDAR: Listing -> Calendar
 
 一个房源有多个日历记录。
+
 3.HAS_REVIEW_SCORE: Listing -> ReviewScore
 
 一个房源有多个评分记录。
+
 4.LOCATED_IN: Listing -> Location
 
 一个房源位于一个地理位置。
+
 5.LOCATED_IN: Host -> Location
 
 一个房东位于一个地理位置。
+
 6.HAS_AMENITY: Listing -> Amenity
 
 一个房源有多个设施。
