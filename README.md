@@ -14,7 +14,7 @@ head -n 3000 "/System/Volumes/Data/Users/jintaoma/Desktop/UPC/BDM/project/calend
 ## 属性图设计
 
 
-###节点类型
+### 节点类型
 
 节点类型及其属性
 
@@ -131,7 +131,7 @@ amenity_name: STRING
 ## 查询语句：
 下面这些查询涵盖了基本的数据验证、趋势分析和高级图分析。我们还可以写更多更复杂的。
 
-###基本数据验证
+### 基本数据验证
 查询所有房源及其房东
 
 
@@ -168,7 +168,7 @@ LIMIT 20
 MATCH (h:Host)-[:LOCATED_IN]->(loc:Location)
 RETURN h, loc
 LIMIT 20
-###趋势分析
+### 趋势分析
 按房东查询房源数量
 
 
@@ -212,7 +212,7 @@ MATCH (l:Listing)-[:HAS_AMENITY]->(a:Amenity)
 WHERE a.amenity_name = "Wifi"
 RETURN l, a
 LIMIT 20
-###高级图分析
+### 高级图分析
 可视化评分高于4.5的房源及其房东
 
 
