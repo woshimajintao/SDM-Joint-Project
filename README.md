@@ -21,7 +21,7 @@ https://drive.google.com/file/d/1-A0-D0aZmVnyupvOqK-yi5A2L1LAlVmS/view?usp=share
 ## 属性图设计
 
 
-### 节点和属性:
+### 节点:
 
 下面是节点类型及其属性：
 
