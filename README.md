@@ -3,6 +3,7 @@ SDM Part of Joint Project
 
 更新一下：
 这里我重新分析了calendar和listings的csv，因为前者的数据量太大好几百MB，所以我只抽取了20000行
+数据来源airbnb：https://insideairbnb.com/get-the-data/
 
 ## 数据预处理：
 
