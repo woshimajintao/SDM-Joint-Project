@@ -108,6 +108,31 @@ longitude: FLOAT
 属性:
 amenity_name: STRING
 
+### 关键属性：
+1. Listing (房源)
+关键属性：id（唯一标识符）、name（房源名称）、property_type（房产类型）、room_type（房间类型）、price（从Calendar节点引用）
+原因：id是数据库操作的基础；name、property_type和room_type是用户常关心的内容；价格是决策的关键因素，尽管它存储在Calendar节点中，但在展示房源信息时经常需要。
+
+2. Host (房东)
+关键属性：host_id（唯一标识符）、host_name（名字）、host_since（开始日期）、host_is_superhost（是否超级房东）
+原因：标识、人名用于显示和识别；开始日期和超级房东状态对于评估房东经验和信誉度很重要。
+
+3. Calendar (日历记录)
+关键属性：listing_id、date、price、available（是否可用）
+原因：这些属性对于决定房源的可预订状态和价格至关重要。
+
+4. ReviewScore (评分)
+关键属性：listing_id、review_scores_rating（总评分）
+原因：评分是房源吸引力的重要指标，常用于排序和筛选。
+
+5. Location (地理位置)
+关键属性：latitude、longitude、neighbourhood
+原因：位置是房源搜索和选择中的一个主要因素。
+
+6. Amenity (设施)
+关键属性：amenity_name
+原因：设施类型是描述房源特色的重要方面。
+
 ### 关系
 1.HAS_HOST:  Host-> Listing
 
