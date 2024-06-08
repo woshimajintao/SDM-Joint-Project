@@ -113,7 +113,7 @@ amenity_name: STRING
 ### 关键属性：
 1. Listing (房源)
 
-关键属性：id（唯一标识符）、name（房源名称）、property_type（房产类型）、room_type（房间类型）、price（从Calendar节点引用）
+关键属性：id（唯一标识符）、name（房源名称）、property_type（房产类型）、room_type（房间类型）、price（从Calendar节点引用查询）
 
 原因：id是数据库操作的基础；name、property_type和room_type是用户常关心的内容；价格是决策的关键因素，尽管它存储在Calendar节点中，但在展示房源信息时经常需要。
 
@@ -143,7 +143,7 @@ amenity_name: STRING
 
 6. Amenity (设施)
 
-关键属性：amenity_name
+关键属性：amenity_detail
 
 原因：设施类型是描述房源特色的重要方面。
 
@@ -156,7 +156,7 @@ amenity_name: STRING
 
 一个房源有多个日历记录。
 
-3.HAS_REVIEW_SCORE: Listing -> ReviewScore
+3.HAS_SCORE: Listing -> ReviewScore
 
 一个房源有多个评分记录。
 
@@ -164,9 +164,9 @@ amenity_name: STRING
 
 一个房源位于一个地理位置。
 
-5.LOCATED_IN: Host -> Location
+5.LIVE_IN: Host -> Location
 
-一个房东住在一个地方。（这里也可以改为LIVE_IN）
+一个房东住在一个地方。
 
 6.HAS_AMENITY: Listing -> Amenity
 
