@@ -177,8 +177,10 @@ amenity_name: STRING
 ## 关系图（需要用visio或者draw.io重新画一下,并且标清楚属性）
 
 https://drive.google.com/file/d/1RF15cszjf1HAn04WTAhPwIcq4ZdgjXWz/view?usp=sharing（请用draw.io修改这个图）
+![1717856367033](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/c460d957-2eeb-444c-80fc-9c2a72b8cf96)
+
+这是初稿
 ![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/245ddabb-0dd5-42f2-9984-b345fcb0c348)
-![1717807387541](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/f5144c13-c6f2-4b03-8925-d9db2833d3fd)
 
 
 
