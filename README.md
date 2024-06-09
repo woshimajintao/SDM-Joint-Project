@@ -226,7 +226,7 @@ LIMIT 20
 查询所有房东及其地理位置：
 
 
-MATCH (h:Host)-[:LOCATED_IN]->(loc:Location)
+MATCH (h:Host)-[:LIVE_IN]->(loc:Location)
 RETURN h, loc
 LIMIT 20
 ### 趋势分析
@@ -376,7 +376,90 @@ MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location), (l)-[:HAS_REVIEW_SCORE]->(r:Rev
 RETURN l, loc, r
 LIMIT 20
 
+### 推荐功能（全部可查）：
+
+1.给房东推荐同一天内，与它的房子距离500米以内且大于50米的其他房源，返回二者的价格与设施，进行对比
+，以便于房东调整价格：
+
+// 查找距离500米以内且大于50米的房源
+MATCH (l1:Listing)-[:LOCATED_IN]->(loc1:Location), (l2:Listing)-[:LOCATED_IN]->(loc2:Location)
+WHERE l1.id <> l2.id
+WITH l1, l2, point({latitude: loc1.latitude, longitude: loc1.longitude}) AS p1, point({latitude: loc2.latitude, longitude: loc2.longitude}) AS p2
+WITH l1, l2, point.distance(p1, p2) AS dist
+WHERE dist < 500 AND dist > 50
+
+// 查找2024年4月5日的价格
+MATCH (l1)-[:HAS_CALENDAR]->(c1:Calendar), (l2)-[:HAS_CALENDAR]->(c2:Calendar)
+WHERE c1.date = '2024-04-05' AND c2.date = '2024-04-05'
+
+// 获取设施信息
+MATCH (l1)-[:HAS_AMENITY]->(a1:Amenity), (l2)-[:HAS_AMENITY]->(a2:Amenity)
+RETURN l1.id AS sourceListing, l1.name AS sourceListingName, COLLECT(a1.amenity_detail) AS sourceListingAmenities, 
+       l2.id AS recommendedListing, l2.name AS recommendedListingName, COLLECT(a2.amenity_detail) AS recommendedListingAmenities, 
+       c1.price AS sourceListingPrice, c2.price AS recommendedListingPrice, dist
+ORDER BY dist
+LIMIT 100;
 
 
+2.基于评分的推荐
+
+通过相似评分推荐其他房源。给房东推荐同一天内，与它的房子评分差距很小的其他房源，返回二者的价格与设施以及所在的区域，进行对比，以便于房东调整价格：
+
+// 基于评分的推荐，查找评分差距在0.2以内的房源
+MATCH (l1:Listing)-[:HAS_SCORE]->(r1:ReviewScore), (l2:Listing)-[:HAS_SCORE]->(r2:ReviewScore)
+WHERE l1.id <> l2.id
+WITH l1, l2, ABS(r1.review_scores_rating - r2.review_scores_rating) AS scoreDiff
+WHERE scoreDiff < 0.2 // 评分差距在0.2以内
+
+// 查找2024年4月5日的价格
+MATCH (l1)-[:HAS_CALENDAR]->(c1:Calendar), (l2)-[:HAS_CALENDAR]->(c2:Calendar)
+WHERE c1.date = '2024-04-05' AND c2.date = '2024-04-05'
+
+// 获取酒店的设施
+MATCH (l1)-[:HAS_AMENITY]->(a1:Amenity), (l2)-[:HAS_AMENITY]->(a2:Amenity)
+
+// 获取neighbourhood_cleansed
+MATCH (l1)-[:LOCATED_IN]->(loc1:Location), (l2)-[:LOCATED_IN]->(loc2:Location)
+WITH l1, l2, loc1.neighbourhood_cleansed AS sourceNeighbourhood, loc2.neighbourhood_cleansed AS recommendedNeighbourhood,
+     scoreDiff, c1.price AS sourceListingPrice, c2.price AS recommendedListingPrice,
+     collect(DISTINCT a1.amenity_detail) AS sourceAmenities, collect(DISTINCT a2.amenity_detail) AS recommendedAmenities
+
+RETURN l1.id AS sourceListing, l1.name AS sourceListingName, sourceNeighbourhood,
+       l2.id AS recommendedListing, l2.name AS recommendedListingName, recommendedNeighbourhood,
+       scoreDiff, sourceListingPrice, recommendedListingPrice, sourceAmenities, recommendedAmenities
+ORDER BY scoreDiff
+LIMIT 10;
+
+
+3.基于设施的推荐
+
+通过计算房源设施的相似性推荐其他房源。给房东推荐同一天内，与它的房子设施差不多的其他房源，返回二者的价格与设施以及所在的区域，进行对比，以便于房东调整价格：
+
+// 查找共享设施差不多的房源对
+MATCH (l1:Listing)-[:HAS_AMENITY]->(a:Amenity)<-[:HAS_AMENITY]-(l2:Listing)
+WHERE l1.id <> l2.id
+WITH l1, l2, COUNT(a) AS sharedAmenities
+ORDER BY sharedAmenities DESC
+LIMIT 10
+
+// 查找2024年4月5日的价格
+MATCH (l1)-[:HAS_CALENDAR]->(c1:Calendar), (l2)-[:HAS_CALENDAR]->(c2:Calendar)
+WHERE c1.date = '2024-04-05' AND c2.date = '2024-04-05'
+
+// 获取酒店的设施
+MATCH (l1)-[:HAS_AMENITY]->(a1:Amenity), (l2)-[:HAS_AMENITY]->(a2:Amenity)
+
+// 获取neighbourhood_cleansed
+MATCH (l1)-[:LOCATED_IN]->(loc1:Location), (l2)-[:LOCATED_IN]->(loc2:Location)
+WITH l1, l2, loc1.neighbourhood_cleansed AS sourceNeighbourhood, loc2.neighbourhood_cleansed AS recommendedNeighbourhood,
+     sharedAmenities, c1.price AS sourceListingPrice, c2.price AS recommendedListingPrice,
+     collect(DISTINCT a1.amenity_detail) AS sourceAmenities, collect(DISTINCT a2.amenity_detail) AS recommendedAmenities
+
+RETURN l1.id AS sourceListing, l1.name AS sourceListingName, sourceNeighbourhood,
+       l2.id AS recommendedListing, l2.name AS recommendedListingName, recommendedNeighbourhood,
+       sharedAmenities, sourceListingPrice, recommendedListingPrice, sourceAmenities, recommendedAmenities
+ORDER BY sharedAmenities DESC
+LIMIT 10;
+![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/f65ec73d-872b-479b-bb05-710a30e90e2a)
 
 
