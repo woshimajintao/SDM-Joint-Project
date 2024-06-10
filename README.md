@@ -150,7 +150,7 @@ amenity_name: STRING
 ### 关系
 1.HAS_HOST:  Host-> Listing
 
-房东拥有一个房源。（这个关系名字也可以改为OWN等表示拥有）
+房东拥有多个房源。（这个关系名字也可以改为OWN等表示拥有）
 
 2.HAS_CALENDAR: Listing -> Calendar
 
@@ -166,7 +166,7 @@ amenity_name: STRING
 
 5.LIVE_IN: Host -> Location
 
-一个房东住在一个地方。
+一个房东住在多个地方。
 
 6.HAS_AMENITY: Listing -> Amenity
 
