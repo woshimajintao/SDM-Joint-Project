@@ -166,7 +166,7 @@ amenity_name: STRING
 
 5.LIVE_IN: Host -> Location
 
-一个房东住在多个地方。
+一个房东住在多个地方。（这里改为PROPERTIES_LOCATED，表示房东的房产分别位于哪些地方）
 
 6.HAS_AMENITY: Listing -> Amenity
 
