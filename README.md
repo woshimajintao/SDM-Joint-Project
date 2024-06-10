@@ -148,7 +148,7 @@ amenity_name: STRING
 原因：设施类型是描述房源特色的重要方面。
 
 ### 关系
-1.HAS_HOST:  Host-> Listing
+1.OWN:  Host-> Listing
 
 房东拥有多个房源。（这个关系名字也可以改为OWN等表示拥有）
 
