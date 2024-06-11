@@ -1,78 +1,103 @@
-// Basic Data Verification
-// Query all listings owned by hosts
-MATCH (h:Host)-[:HAS_HOST]->(l:Listing) RETURN l, h LIMIT 20
-
-// Query all listings with their calendar records
-MATCH (l:Listing)-[:HAS_CALENDAR]->(c:Calendar) RETURN l, c LIMIT 20
-
-// Query all listings with their review scores
-MATCH (l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore) RETURN l, r LIMIT 20
-
-// Query all listings with their amenities
-MATCH (l:Listing)-[:HAS_AMENITY]->(a:Amenity) RETURN l, a LIMIT 20
-
-// Query all listings with their geographic locations
-MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location) RETURN l, loc LIMIT 20
-
-// Query all hosts with their geographic locations
-MATCH (h:Host)-[:LIVE_IN]->(loc:Location) RETURN h, loc LIMIT 20
-
-// Trend Analysis
-// Query number of listings by host
-MATCH (h:Host)-[:HAS_HOST]->(l:Listing)
-RETURN h.host_name, COUNT(l) AS listing_count
-ORDER BY listing_count DESC LIMIT 20
-
-// Query number of listings by location
-MATCH (loc:Location)<-[:LOCATED_IN]-(l:Listing)
-RETURN loc.neighbourhood, COUNT(l) AS listing_count
-ORDER BY listing_count DESC LIMIT 20
-
-// Query listings with review scores above 4.5
-MATCH (l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-WHERE r.review_scores_rating > 4.5
-RETURN l, r LIMIT 20
-
-// Average review score by host
-MATCH (h:Host)-[:HAS_HOST]->(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-RETURN h.host_name, AVG(r.review_scores_rating) AS avg_rating
-ORDER BY avg_rating DESC LIMIT 20
-
-// Average review score by location
-MATCH (loc:Location)<-[:LOCATED_IN]-(l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-RETURN loc.neighbourhood, AVG(r.review_scores_rating) AS avg_rating
-ORDER BY avg_rating DESC LIMIT 20
-
-// Query listings with specific amenities (e.g., Wifi)
+// Queries：
+Air Conditioner：
 MATCH (l:Listing)-[:HAS_AMENITY]->(a:Amenity)
-WHERE a.amenity_name = "Wifi"
-RETURN l, a LIMIT 20
+WHERE a.amenity_detail = 'Air conditioning'
+RETURN l, a
 
-// Advanced Graph Analysis
-// Visualize listings with high scores and their hosts
-MATCH (l:Listing)-[:HAS_HOST]->(h:Host), (l)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-WHERE r.review_scores_rating > 4.5
-RETURN l, h, r LIMIT 20
 
-// Visualize all listings, their hosts, and scores
-MATCH (l:Listing)-[:HAS_HOST]->(h:Host), (l)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-RETURN l, h, r LIMIT 20
+// Sagrada Familia：
+MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location), (l)-[:HAS_CALENDAR]->(c:Calendar)
+WHERE loc.neighbourhood_cleansed = 'la Sagrada Família'
+RETURN l, loc, c.price
 
-// Visualize all listings and their amenities
-MATCH (l:Listing)-[:HAS_AMENITY]->(a:Amenity)
-RETURN l, a LIMIT 20
 
-// Visualize listings and their hosts by specific location (e.g., Downtown)
-MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location), (l)-[:HAS_HOST]->(h:Host)
-WHERE loc.neighbourhood = "Downtown"
-RETURN l, loc, h LIMIT 20
+// Saint Jordi：
+MATCH (l:Listing)-[:LOCATED_IN]->(loc:Location)
+MATCH (l)-[:HAS_CALENDAR]->(c:Calendar)
+WHERE c.date = '2024-04-23'
+MATCH (l)-[:HAS_AMENITY]->(a:Amenity)
+RETURN l, loc, c.price, a
 
-// Query high-scored listings and all their relationships
-MATCH (l:Listing)-[:HAS_REVIEW_SCORE]->(r:ReviewScore)
-WHERE r.review_scores_rating > 4.5
-MATCH (l)-[rel]-(other)
-RETURN l, r, rel, other LIMIT 20
+// High Rating：
+MATCH (l:Listing)-[:HAS_SCORE]->(r:ReviewScore) WHERE r.review_scores_rating > 4.5 MATCH (l)-[rel]-(other)RETURN l, r, rel, other LIMIT 20
 
-// Visualize all hosts, their listings, and locations
-MATCH (h:Host)-[:LOCATED_IN]->(loc:Location), (h)-[:HAS_HOST]->(l:Listing)
-RETURN h, loc, l LIMIT 20
+
+// Recommandation System：
+// Rating：
+MATCH (h:Host {host_name: 'Sandra'})-[:OWN]->(l1:Listing)-[:LOCATED_IN]->(loc1:Location)
+
+MATCH (l2:Listing)-[:LOCATED_IN]->(loc2:Location)
+WHERE l1.id <> l2.id
+AND point.distance(point({latitude: loc1.latitude, longitude: loc1.longitude}), point({latitude: loc2.latitude, longitude:loc2.longitude})) > 200
+AND point.distance(point({latitude: loc1.latitude, longitude: loc1.longitude}), point({latitude: loc2.latitude, longitude:loc2.longitude})) <500
+
+// Get the housing rating less than 0.5
+MATCH (l1)-[:HAS_SCORE]->(r1:ReviewScore), (l2)-[:HAS_SCORE]->(r2:ReviewScore)
+WHERE abs(r1.review_scores_rating - r2.review_scores_rating) < 0.5
+
+// Get Amenity
+MATCH (l1)-[:HAS_AMENITY]->(a1:Amenity), (l2)-[:HAS_AMENITY]->(a2:Amenity)
+
+// Get neighbourhood_cleansed
+MATCH (l1)-[:LOCATED_IN]->(loc1:Location), (l2)-[:LOCATED_IN]->(loc2:Location)
+WITH h, l1, l2, loc1.neighbourhood_cleansed AS sourceNeighbourhood, loc2.neighbourhood_cleansed ASrecommendedNeighbourhood,
+c1.price AS sourceListingPrice, c2.price AS recommendedListingPrice,
+COLLECT(DISTINCT a1.amenity_detail) AS sourceAmenities, COLLECT(DISTINCT a2.amenity_detail) ASrecommendedAmenities,
+r1.review_scores_rating AS sourceRating, r2.review_scores_rating AS recommendedRating,
+point.distance(point({latitude: loc1.latitude, longitude: loc1.longitude}), point({latitude: loc2.latitude, longitude:loc2.longitude})) AS distance,
+abs(r1.review_scores_rating - r2.review_scores_rating) AS ratingDifference
+
+RETURN h.host_name AS hostName,
+l1.id AS sourceListing,
+l2.id AS recommendedListing,
+sourceListingPrice,
+recommendedListingPrice,
+distance,
+ratingDifference,
+l1.name AS sourceListingName,
+l2.name AS recommendedListingName,
+sourceNeighbourhood,
+recommendedNeighbourhood,
+sourceAmenities,
+recommendedAmenities
+ORDER BY ratingDifference, distance
+LIMIT 10;
+
+
+// Similar Amenity：
+MATCH (h:Host {host_name: 'Sandra'})-[:OWN]->(l1:Listing)
+
+MATCH (l1)-[:HAS_AMENITY]->(a:Amenity)<-[:HAS_AMENITY]-(l2:Listing)
+WHERE l1.id <> l2.id AND l1.id < l2.id
+WITH h, l1, l2, COUNT(a) AS sharedAmenities
+ORDER BY sharedAmenities DESC
+LIMIT 10
+
+// Get the price of 2024 April 23
+MATCH (l1)-[:HAS_CALENDAR]->(c1:Calendar), (l2)-[:HAS_CALENDAR]->(c2:Calendar)
+WHERE c1.date = '2024-04-23' AND c2.date = '2024-04-23'
+
+// Get Amenity
+MATCH (l1)-[:HAS_AMENITY]->(a1:Amenity), (l2)-[:HAS_AMENITY]->(a2:Amenity)
+
+// Get neighbourhood_cleansed
+MATCH (l1)-[:LOCATED_IN]->(loc1:Location), (l2)-[:LOCATED_IN]->(loc2:Location)
+WITH h, l1, l2, loc1.neighbourhood_cleansed AS sourceNeighbourhood, loc2.neighbourhood_cleansed ASrecommendedNeighbourhood,
+sharedAmenities, c1.price AS sourceListingPrice, c2.price AS recommendedListingPrice,
+COLLECT(DISTINCT a1.amenity_detail) AS sourceAmenities, COLLECT(DISTINCT a2.amenity_detail) ASrecommendedAmenities
+
+RETURN h.host_name AS hostName,
+l1.id AS sourceListing,
+l2.id AS recommendedListing,
+sharedAmenities,
+sourceListingPrice,
+recommendedListingPrice,
+l1.name AS sourceListingName,
+l2.name AS recommendedListingName,
+sourceNeighbourhood,
+recommendedNeighbourhood,
+sourceAmenities,
+recommendedAmenities
+ORDER BY sharedAmenities DESC
+LIMIT 10;
+
