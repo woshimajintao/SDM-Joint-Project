@@ -63,3 +63,21 @@ Recommend properties with similar amenities to the hotel owner named Sandra, and
 
 ## Data Pipeline
 ![image](graphs/data_pipeline.jpg)
+
+
+## Contact
+For further assistance, please contact the project maintainer Jintao Ma(mars19990123@gmail.com)
+
+Thank you for following this guide to know our SDM project!
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
