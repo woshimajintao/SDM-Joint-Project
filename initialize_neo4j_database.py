@@ -26,7 +26,7 @@ def run_query(query):
 
 # Define LOAD CSV query statement
 load_csv_query = """
-LOAD CSV WITH HEADERS FROM 'file:///cleaned_merged_listings_calendar2_.csv' AS row
+LOAD CSV WITH HEADERS FROM 'file:///test.csv' AS row
 WITH row, split(replace(replace(row.amenities, '[', ''), ']', ''), ',') AS amenities
 
 // Create Location node
