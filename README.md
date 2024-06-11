@@ -36,8 +36,27 @@ https://drive.google.com/file/d/14Wo7hFK97nkzSbsxl63ZpiCw-tWWjaTI/view?usp=shari
 
 
 ## Query Result Examples
+Query properties with air conditioning available
+![q1](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/3576dcac-a1e4-45e6-9f12-e2fcc62c1f0d)
 
+Query properties with ratings higher than 4.5
+![q2](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/4c18f512-3b90-4bbf-a96e-0a1eac523086)
+
+
+Query properties and prices near Sagrada Família
 ![image](graphs/q3.jpg)
+
+Query properties, their locations, prices, and amenities on St. George's Day of Catalonia
+![q4](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/740bb871-dbc3-4c96-ab9b-030f67c41ac7)
+
+
+## Recommender Result Examples
+
+Recommend properties with similar amenities to the hotel owner named Sandra, and compare these properties' prices and amenities on a specific date.
+![r1](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/750952f6-63c4-4c5d-a6b3-91fb1dc0806b)
+
+
+Recommend properties with similar amenities to the hotel owner named Sandra, and compare these properties' prices and amenities on a specific date.
 ![image](graphs/r2.jpg)
 
 
