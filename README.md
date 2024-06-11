@@ -37,10 +37,8 @@ https://drive.google.com/file/d/1RF15cszjf1HAn04WTAhPwIcq4ZdgjXWz/view?usp=shari
 
 ## Query Result Examples
 
-![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/9a3740c3-98fe-41f8-85c2-13c84dee6c1c)
-![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/13d5f01d-d20f-4f4d-8a25-8be431f1a0ce)
-![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/74737dd9-4419-4cc5-ae3f-d6708cd06d3a)
-![image](https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/f65ec73d-872b-479b-bb05-710a30e90e2a)
+![image](graphs/q3.jpg)
+![image](graphs/r2.jpg)
 
 
 
