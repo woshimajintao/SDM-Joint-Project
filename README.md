@@ -30,7 +30,7 @@ The SDM-Joint-Project is designed to leverage Neo4j graph database technologies 
 
 ## Relational Graph
 
-https://drive.google.com/file/d/1RF15cszjf1HAn04WTAhPwIcq4ZdgjXWz/view?usp=sharing
+https://drive.google.com/file/d/14Wo7hFK97nkzSbsxl63ZpiCw-tWWjaTI/view?usp=sharing
 <img width="728" alt="graph" src="https://github.com/woshimajintao/SDM-Joint-Project/assets/48515469/92e0dc05-debe-4070-b4b4-b3e41173bb45">
 
 
