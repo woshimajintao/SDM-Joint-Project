@@ -7,7 +7,7 @@ The SDM-Joint-Project is designed to leverage Neo4j graph database technologies 
 - `initialize_neo4j_database.py` - Python script to initialize the Neo4j database with the necessary schema and data.
 - `bnb_insight_queries.cypher` - Contains Cypher queries for extracting insights from the data.
 - `sdm_preprocessing.ipynb` - Jupyter Notebook for preprocessing data used in the project.
-- `calendar1.csv` - Sample data file representing calendar data for listings.
+- `test.csv` - Sample data file for testing our Property Graph.
 
 ## Getting Started
 ### Prerequisites
