@@ -164,7 +164,7 @@ amenity_name: STRING
 
 一个房源位于一个地理位置。
 
-5.LIVE_IN: Host -> Location
+5.PROPERTIES_LOCATED: Host -> Location
 
 一个房东住在多个地方。（这里改为PROPERTIES_LOCATED，表示房东的房产分别位于哪些地方）
 
