@@ -22,12 +22,10 @@ The SDM-Joint-Project is designed to leverage Neo4j graph database technologies 
    cd SDM-Joint-Project
    
 2. **Set up the Neo4j Database:**
-   ```bash
    Ensure Neo4j is installed and running on your system.
    Run the initialize_neo4j_database.py to set up the database schema and load initial data.
    
 1. **Data Preprocessing：**
-   ```bash
    Open the sdm_preprocessing.ipynb notebook in Jupyter or Colab and execute the cells to preprocess the data.
 
 ## Relational Graph
