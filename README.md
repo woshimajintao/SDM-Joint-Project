@@ -1,7 +1,7 @@
 # SDM-Joint-Project
 
 ## Overview
-The SDM-Joint-Project is designed to leverage Neo4j graph database technologies to manage and analyze property-related data effectively. This project aims to provide advanced analytics for price prediction and property management insights, particularly tailored for Bed and Breakfast owners in the Catalonia area.
+The SDM-Joint-Project is designed to leverage Neo4j graph database technologies to manage and analyze property-related data effectively. This project aims to provide advanced analytics for price prediction and property management insights, particularly tailored for hotels owners in the Catalonia area.
 
 ## Repository Contents
 - `initialize_neo4j_database.py` - Python script to initialize the Neo4j database with the necessary schema and data.
